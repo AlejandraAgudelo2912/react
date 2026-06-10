@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Videojuego({nombre, horas, onFavorito, onQuitarFavorito}){
+function Videojuego({nombre, horas, onFavorito, onQuitarFavorito, onEliminar}){
     const [esFavorito, setEsFavorito] = useState(false);
 
     return (
@@ -18,6 +18,14 @@ function Videojuego({nombre, horas, onFavorito, onQuitarFavorito}){
                     
             }}>
                 {esFavorito ? "❤️ Favorito" : "🤍 Favorito"}
+            </button>
+
+            <button 
+                onClick={() =>{
+                    onEliminar(nombre)
+
+            }}>
+                Eliminar
             </button>
         </div>
     )

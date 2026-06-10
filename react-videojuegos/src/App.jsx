@@ -3,6 +3,7 @@ import { useState } from "react";
 import Videojuego from "./components/Videojuego";
 
 function App (){
+  console.log("App ejecutada");
   const [favoritos, setFavoritos] = useState(0);
 
   function agregarJuego(){
@@ -27,6 +28,11 @@ function App (){
     ]);
 
     setNuevoJuego("");
+  }
+
+  function eliminarJuego(nombreJuego){
+    setVideojuegos(videojuegos.filter(videojuego => videojuego.nombre !== nombreJuego));
+
   }
 
   function aumentarFavoritos() {
@@ -69,6 +75,7 @@ function App (){
           horas={videojuego.horas}
           onFavorito={aumentarFavoritos}
           onQuitarFavorito={disminuirFavoritos}
+          onEliminar={eliminarJuego}
         />      
       ))}
 
