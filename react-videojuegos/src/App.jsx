@@ -33,6 +33,13 @@ function App (){
     setFavoritos(favoritos + 1);
   }
 
+  function disminuirFavoritos(){
+    if (favoritos>0) {
+      setFavoritos(favoritos - 1);
+
+    }
+  }
+
       const [videojuegos, setVideojuegos] = useState([
         {
             nombre: "Minecraft",
@@ -61,6 +68,7 @@ function App (){
           nombre={videojuego.nombre}
           horas={videojuego.horas}
           onFavorito={aumentarFavoritos}
+          onQuitarFavorito={disminuirFavoritos}
         />      
       ))}
 
