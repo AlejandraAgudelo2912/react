@@ -1,10 +1,20 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Videojuego from "./components/Videojuego";
 
 function App (){
   console.log("App ejecutada");
   const [favoritos, setFavoritos] = useState(0);
+
+  useEffect(()=>{
+    async function cargarUsuarios() {
+      const respuesta = await fetch("https://jsonplaceholder.typicode.com/users");
+
+      const datos = await respuesta.json();
+      console.log(datos);
+    }
+    cargarUsuarios();
+  }, []);
 
   function agregarJuego(){
     if(nuevoJuego.trim()===""){
