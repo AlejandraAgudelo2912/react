@@ -5,13 +5,14 @@ import Videojuego from "./components/Videojuego";
 function App (){
   console.log("App ejecutada");
   const [favoritos, setFavoritos] = useState(0);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(()=>{
     async function cargarUsuarios() {
       const respuesta = await fetch("https://jsonplaceholder.typicode.com/users");
 
       const datos = await respuesta.json();
-      console.log(datos);
+      setUsuarios(datos);
     }
     cargarUsuarios();
   }, []);
@@ -95,6 +96,13 @@ function App (){
         onChange={(e)=>setNuevoJuego(e.target.value)}
       ></input>
       <button onClick={agregarJuego}>Agregar</button>
+
+      <h2>Usuarios</h2>
+      {
+        usuarios.map(usuario => (
+          <p>{usuario.name}</p>
+        ))
+      }
     </div>
     
   )
