@@ -1,11 +1,14 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Videojuego from "./components/Videojuego";
+import Busqueda from "./components/Busqueda";
 
 function App (){
   console.log("App ejecutada");
   const [favoritos, setFavoritos] = useState(0);
   const [usuarios, setUsuarios] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+
 
   useEffect(()=>{
     async function cargarUsuarios() {
@@ -80,7 +83,13 @@ function App (){
       <p>Videojuegos Favoritos: {favoritos}</p>
       <button onClick={()=>setFavoritos(favoritos+1)}>Añadir Favoritos</button>
 
-      {videojuegos.map(videojuego => (
+      <Busqueda
+        busqueda={busqueda}
+        setBusqueda={setBusqueda}
+      />
+
+      {videojuegos.filter(videojuego =>videojuego.nombre.toLowerCase().includes(busqueda.toLowerCase()))
+        .map(videojuego => (
         <Videojuego 
           nombre={videojuego.nombre}
           horas={videojuego.horas}
@@ -89,6 +98,8 @@ function App (){
           onEliminar={eliminarJuego}
         />      
       ))}
+
+      
 
       <input 
         type="text" 
